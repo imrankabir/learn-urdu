@@ -37,13 +37,24 @@ canvas {
   height: 100%;
   position: absolute;
 }
-.letter {
+/*.letter {
   color: #ddd;
   direction: rtl;
   font-size: 100px;
   text-align: center;
   line-height: 150px;
   pointer-events: none;
+}*/
+.letter {
+  color: #ddd;
+  height: 100%;
+  display: flex;
+  direction: rtl;
+  font-size: 60px;
+  text-align: center;
+  align-items: center;
+  pointer-events: none;
+  justify-content: center;
 }
 button {
   color: white;
