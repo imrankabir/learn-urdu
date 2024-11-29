@@ -21,7 +21,6 @@ body {
 .box {
     width: 120px;
     height: 120px;
-    background: #fff;
     position: relative;
 }
 .box::before {
