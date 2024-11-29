@@ -1,23 +1,22 @@
 const letters = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ڈ', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'و', 'ہ', 'ء', 'ی', 'ے'];
-const grid = document.querySelector('#lettersGrid');
+const container = document.querySelector('.container');
 
-const get = (k, d) => JSON.parse(localStorage.getItem(`table-${k}`)) ?? d;
-const set = (k, v) => localStorage.setItem(`table-${k}`, JSON.stringify(v));
+const get = (k, d) => JSON.parse(localStorage.getItem(`learn-urdu-${k}`)) ?? d;
+const set = (k, v) => localStorage.setItem(`learn-urdu-${k}`, JSON.stringify(v));
 
 letters.forEach(letter => {
-  const letterBox = document.createElement('div');
-  letterBox.classList.add('letter-box');
+  const box = document.createElement('div');
+  box.classList.add('box');
 
-  const letterEl = document.createElement('div');
-  letterEl.classList.add('letter');
-  letterEl.classList.add('line');
-  letterEl.textContent = letter;
-  letterBox.appendChild(letterEl);
+  const el = document.createElement('div');
+  el.classList.add('letter');
+  el.textContent = letter;
+  box.appendChild(el);
 
   const canvas = document.createElement('canvas');
   canvas.width = 120;
   canvas.height = 120;
-  letterBox.appendChild(canvas);
+  box.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
   let isDrawing = false;
@@ -70,10 +69,10 @@ letters.forEach(letter => {
   canvas.addEventListener('touchend', endPosition);
   canvas.addEventListener('touchmove', draw);
 
-  grid.appendChild(letterBox);
+  container.appendChild(box);
 });
 
-document.querySelector('#clearAll').addEventListener('click', e => {
+document.querySelector('#clear').addEventListener('click', e => {
   document.querySelectorAll('canvas').forEach(c => {
     const ctx = c.getContext('2d');
     ctx.clearRect(0, 0, c.width, c.height);
