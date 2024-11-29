@@ -16,7 +16,6 @@ body {
   padding: 20px;
 }
 .grid-container {
-  gap: 40px 10px;
   display: flex;
   padding: 10px;
   flex-wrap: wrap;
@@ -28,7 +27,7 @@ body {
   height: 150px;
   background: #fff;
   position: relative;
-  border: 2px solid #333;
+  border: 1px solid #333;
 }
 canvas {
   top: 0;
