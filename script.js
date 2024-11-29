@@ -150,10 +150,10 @@ document.addEventListener('keydown', e => {
         document.querySelectorAll('canvas').forEach(c => clear(c));
       break;
     case 37:
-        undo();
+        undo(e);
       break;
     case 39:
-        redo();
+        redo(e);
       break;
   }
 });
