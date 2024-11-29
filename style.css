@@ -8,26 +8,20 @@
 body {
   margin: 0;
   padding: 0;
+  background: #fff;
   text-align: center;
-  background: #f0f8ff;
   font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
-}
-.container {
-  padding: 20px;
 }
 .grid-container {
   display: flex;
-  padding: 10px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: row-reverse;
 }
 .letter-box {
-  width: 150px;
-  height: 150px;
-  background: #fff;
+  width: 120px;
+  height: 120px;
   position: relative;
-  border: 1px solid #333;
 }
 canvas {
   top: 0;
@@ -36,16 +30,8 @@ canvas {
   height: 100%;
   position: absolute;
 }
-/*.letter {
-  color: #ddd;
-  direction: rtl;
-  font-size: 100px;
-  text-align: center;
-  line-height: 150px;
-  pointer-events: none;
-}*/
 .letter {
-  color: #ddd;
+  color: #aaa;
   height: 100%;
   display: flex;
   direction: rtl;
@@ -59,11 +45,17 @@ button {
   color: white;
   border: none;
   cursor: pointer;
-  margin-top: 20px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-radius: 5px;
   background: #4caf50;
 }
 button:hover {
   background: #45a049;
+}
+.line {
+  height: 75px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-bottom: 1px solid #aaa;
 }

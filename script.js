@@ -1,28 +1,28 @@
-const urduLetters = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'ں', 'و', 'ہ', 'ء', 'ی', 'ے'];
+const letters = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ڈ', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'و', 'ہ', 'ء', 'ی', 'ے'];
 const grid = document.querySelector('#lettersGrid');
-const clearAllButton = document.querySelector('#clearAll');
 
 const get = (k, d) => JSON.parse(localStorage.getItem(`table-${k}`)) ?? d;
 const set = (k, v) => localStorage.setItem(`table-${k}`, JSON.stringify(v));
 
-urduLetters.forEach(letter => {
+letters.forEach(letter => {
   const letterBox = document.createElement('div');
   letterBox.classList.add('letter-box');
 
   const letterEl = document.createElement('div');
   letterEl.classList.add('letter');
+  letterEl.classList.add('line');
   letterEl.textContent = letter;
   letterBox.appendChild(letterEl);
 
   const canvas = document.createElement('canvas');
-  canvas.width = 150;
-  canvas.height = 150;
+  canvas.width = 120;
+  canvas.height = 120;
   letterBox.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
   let isDrawing = false;
   
-  const getCoordinates = (e, c) => {
+  const getCoordinates = (c, e) => {
     const rect = c.getBoundingClientRect();
     if (e.touches) {
       return {
@@ -51,7 +51,7 @@ urduLetters.forEach(letter => {
 
   const draw = e => {
     if (isDrawing) {
-      const { x, y } = getCoordinates(e, canvas);
+      const { x, y } = getCoordinates(canvas, e);
       ctx.lineWidth = 5;
       ctx.lineCap = 'round';
       ctx.strokeStyle = '#000';
@@ -73,10 +73,9 @@ urduLetters.forEach(letter => {
   grid.appendChild(letterBox);
 });
 
-clearAllButton.addEventListener('click', e => {
-  const canvases = document.querySelectorAll('canvas');
-  canvases.forEach(canvas => {
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+document.querySelector('#clearAll').addEventListener('click', e => {
+  document.querySelectorAll('canvas').forEach(c => {
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
   });
 });
