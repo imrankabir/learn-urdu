@@ -28,7 +28,7 @@ body {
   top: 80%;
   content: '';
   height: 1px;
-  background: #aaa;
+  background: #bbb;
   position: absolute;
   transform: translateY(-50%);
 }
