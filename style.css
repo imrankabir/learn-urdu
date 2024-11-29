@@ -1,63 +1,75 @@
 @font-face {
-  font-style: normal;
-  font-weight: normal;
-  font-family: 'Noto Nastaliq Urdu';
-  src: url('./fonts/NotoNastaliqUrdu-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+    font-weight: normal;
+    font-family: 'Noto Nastaliq Urdu';
+    src: url('./fonts/NotoNastaliqUrdu-VariableFont_wght.ttf') format('truetype');
 }
 body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  text-align: center;
-  font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
+    margin: 0;
+    background: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    font-family: 'Noto Nastaliq Urdu', Arial, sans-serif;
 }
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  flex-direction: row-reverse;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
 }
 .box {
-  width: 120px;
-  height: 120px;
-  position: relative;
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    position: relative;
 }
 .box::before {
-  left: 0;
-  right: 0;
-  top: 80%;
-  content: '';
-  height: 1px;
-  background: #bbb;
-  position: absolute;
-  transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    top: 70%;
+    content: '';
+    height: 1px;
+    background: #bbb;
+    position: absolute;
+    transform: translateY(-50%);
 }
 canvas {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 .letter {
-  color: #aaa;
-  height: 100%;
-  display: flex;
-  direction: rtl;
-  font-size: 60px;
-  text-align: center;
-  align-items: center;
-  pointer-events: none;
-  justify-content: center;
+    color: #aaa;
+    height: 80%;
+    display: flex;
+    direction: rtl;
+    font-size: 60px;
+    text-align: center;
+    align-items: center;
+    pointer-events: none;
+    justify-content: center;
 }
-button {
-  color: white;
-  border: none;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background: #4caf50;
+.controls {
+    gap: 10px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
 }
-button:hover {
-  background: #45a049;
+.controls span {
+    padding: 2px;
+    font-size: 1rem;
+    border-radius: 1px;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+}
+.disable {
+    cursor: default;
+    background: #fff;
+}
+.enable {
+    cursor: pointer;
+    background: #efe;
 }
