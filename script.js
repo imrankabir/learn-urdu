@@ -1,11 +1,12 @@
 const alphabets = ['ا', 'ب', 'پ', 'ت', 'ٹ', 'ث', 'ج', 'چ', 'ح', 'خ', 'د', 'ڈ', 'ذ', 'ر', 'ڑ', 'ز', 'ژ', 'س', 'ش', 'ص', 'ض', 'ط', 'ظ', 'ع', 'غ', 'ف', 'ق', 'ک', 'گ', 'ل', 'م', 'ن', 'و', 'ہ', 'ء', 'ی', 'ے'];
-const names = ['محمد', 'احمد', 'مریم', 'حریم', 'فاطمہ', 'روبینہ', 'نرگس'];
+const names = ['محمد', 'مریم', 'احمد', 'حریم', 'فاطمہ', 'روبینہ', 'نرگس'];
 let letters = [];
 
 const undoBtn = document.querySelector('#undo-btn');
 const redoBtn = document.querySelector('#redo-btn');
 const clearBtn = document.querySelector('#clear-btn');
 const container = document.querySelector('.container');
+const namesControl = document.querySelector('#names');
 
 let isDrawing = false;
 let data = [];
@@ -141,26 +142,9 @@ const drawAll = (canvas, e) => {
     });
 };
 
-undoBtn.addEventListener('click', e => undo(e));
-redoBtn.addEventListener('click', e => redo(e));
-clearBtn.addEventListener('click', e => document.querySelectorAll('canvas').forEach(c => clear(c)));
-
-document.addEventListener('keydown', e => {
-  switch (e.which) {
-    case 38:
-    case 67:
-        document.querySelectorAll('canvas').forEach(c => clear(c));
-      break;
-    case 37:
-        undo(e);
-      break;
-    case 39:
-        redo(e);
-      break;
-  }
-});
-
-(e => {
+const generate = name => {
+    container.textContent = '';
+    letters = name ? names : alphabets;
     letters.forEach(letter => {
         const box = document.createElement('div');
         box.classList.add('box');
@@ -187,6 +171,38 @@ document.addEventListener('keydown', e => {
 
         container.appendChild(box);
     });
+};
+
+namesControl.addEventListener('change', e => {
+    const name = e.target.checked;
+    generate(name);
+    set('name', {name});
+    document.querySelectorAll('canvas').forEach(c => clear(c));
+});
+
+undoBtn.addEventListener('click', e => undo(e));
+redoBtn.addEventListener('click', e => redo(e));
+clearBtn.addEventListener('click', e => document.querySelectorAll('canvas').forEach(c => clear(c)));
+
+document.addEventListener('keydown', e => {
+  switch (e.which) {
+    case 38:
+    case 67:
+        document.querySelectorAll('canvas').forEach(c => clear(c));
+      break;
+    case 37:
+        undo(e);
+      break;
+    case 39:
+        redo(e);
+      break;
+  }
+});
+
+(e => {
+    const { name } = get('name', {name: false});
+    generate(name);
+    namesControl.checked = name;
     const {data: d, removedData: rd} = get('data', {data: [], removedData: []});
     data = d;
     removedData = rd;
